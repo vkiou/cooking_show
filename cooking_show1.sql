@@ -139,9 +139,4 @@ select * from cuisine_by_country;
 select * from ingridient_group;
 
 
-
-
-
-
-
 drop database cooking_show;
