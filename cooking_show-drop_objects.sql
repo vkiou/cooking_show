@@ -21,7 +21,6 @@ drop table recipe_thematic_section;
 drop table recipe_nutritional_info;
 drop table cook;
 drop table cook_specialization;
-drop table winner;
 drop table season;
 drop table episode;
 drop table episode_cook_participant;

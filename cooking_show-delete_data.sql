@@ -21,7 +21,6 @@ delete from recipe_thematic_section;
 delete from recipe_nutritional_info;
 delete from cook;
 delete from cook_specialization;
-delete from winner;
 delete from season;
 delete from episode;
 delete from episode_cook_participant;
