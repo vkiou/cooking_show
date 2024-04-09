@@ -1,7 +1,9 @@
 use cooking_show;
 
 #drop tables
- ## edit test
+ ## edit test_1
+
+ 
 drop table cuisine_by_country;
 drop table etiquette;
 drop table tip;
