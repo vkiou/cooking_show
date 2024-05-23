@@ -19,8 +19,8 @@ insert into meal_type(name) values ('breakfast'),('lunch'),('supper'),('dinner')
 insert into etiquette(type_of_meal) values ('brunch'),('elevenses'),('tea'),('snack'),('drink'),('beverage'),('banquet'),('barbeque'),('buffet'),('haute cousine'),
 ('kids meal'),('salad'),('appetiser'),('entree'),('main course'),('side dish'),('dessert'),('soup'),('picnic'),('platter'),('tv dinner'),('value meal');
 #ok
-insert into thematic_section(name,description) values ('for students',''),('summer recipes',''),('budget meals',''),('fasting',''),('childrens',''), 
-('party',''),('light meal',''),('quick dishes','');
+insert into thematic_section(name,description) values ('for students',' dishes appropriate for students '),('summer recipes',' these recipies show high resistance to higher temperatures '),('budget meals',' low budget dishes'),('fasting','recipies appropriate for fasting diet'),('childrens','recipies with natural ingredients, appropriate for kids'), 
+('party','fingerfood appropriate for social gatherings'),('light meal','dishes with low calorie count'),('quick dishes','recipies which need less time to get prepared');
 #ok
 insert into tip(description) values ('double it next time'),('use more buckwheat'),('add rice in after 15 minutes and use more water'),('delicious'),
 ('super yummy'),('very good'),('eh'),('extremely good'),('lukes favorite way to eat noodles. absorbs a lot of water, need to add more second day'),
