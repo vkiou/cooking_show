@@ -16,7 +16,7 @@ PRIMARY KEY (cbc_id),
 constraint valid_country check (country in('Albanian','Algerian','American','Arab','Argentine','Armenian','Austrian','Azerbaijani',
 'Bahraini','Belarusian','Belgian','Bolivian','Bosnia and Herzegovina','Brazilian','British','Bulgarian','Canadian','Chinese','Colombian',
 'Croatian','Cypriot','Czech','Dutch','Egyptian','Emirati','Estonian','Finnish','French','Georgian','German','Greek','Hungarian',
-'Indian','Iranian','Iraqi','Israeli','Italian','Jamaican','Japanese','Jewish','Jordanian','Korean','Kuwaiti','Lebanese','Lithuanian',
+'Indian','Iranian','Iraqi','Irish','Israeli','Italian','Jamaican','Japanese','Jewish','Jordanian','Korean','Kuwaiti','Lebanese','Lithuanian',
 'Macedonian','Mexican','Moldovan','Montenegrin','Moroccan','Omani','Pakistani','Palestinian','Peruvian','Polish','Portuguese','Romanian',
 'Russian','Serbian','Slovak','Slovenian','Spanish','Sri Lankan','Swiss','Syrian','Tajik','Thai','Turkish','Ukrainian','Yemeni')) )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -30,7 +30,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 create table tip(
 tip_id int(7) unsigned not null auto_increment, 
-description varchar(70) not null unique,
+description varchar(200) not null unique,
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
 PRIMARY KEY (tip_id) )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -38,7 +38,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 create table equipment(
 equip_id int(4) unsigned not null auto_increment, 
 name varchar(30) not null unique, 
-instructions varchar(100) not null,
+instructions varchar(250) not null,
 image varbinary(20) unique,
 image_description varchar(50) unique,
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
@@ -49,7 +49,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 with pk recipe_id and the order of the step*/
 create table step(
 step_id int(7) unsigned not null auto_increment, 
-description varchar(70) not null unique,
+description varchar(750) not null unique,
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
 PRIMARY KEY (step_id) )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -89,12 +89,12 @@ PRIMARY KEY (ingri_id),
 FOREIGN KEY (ingrigr_id) references ingridient_group(ingrigr_id) ON DELETE restrict ON UPDATE cascade) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci; 												                    
 																														   
-create table nutritional_info(
+/*create table nutritional_info(
 nutin_id int(10) unsigned not null auto_increment,
-calorie_count int(4),                                  /*Will remove it, I just use it for my dummy values*/  
+calorie_count int(4),                                  #Will remove it, I just use it for my dummy values 
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
 PRIMARY KEY (nutin_id) )
-ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;*/
 
 create table thematic_section(
 themsec_id int(3) unsigned not null auto_increment, 
@@ -118,7 +118,7 @@ recipe_id int(7) unsigned not null auto_increment,
 recipe_type varchar(7) not null, 
 difficulty_level int(1) not null, 
 name varchar(60) not null,
-description varchar(150) not null, 
+description varchar(250), 
 portions int(3) not null,
 grams_fat_per_serving numeric(6,2) not null,
 grams_protein_per_serving numeric(6,2) not null, 
@@ -126,7 +126,6 @@ grams_carbohydrates_per_serving numeric(6,2) not null,
 ingri_id int(7) unsigned not null, 
 time_id int(7) unsigned not null, 
 cbc_id int(3) unsigned not null, 
-nutin_id int(10) unsigned not null,
 image varbinary(20) unique,
 image_description varchar(50) unique,
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
@@ -134,7 +133,7 @@ PRIMARY KEY (recipe_id),
 FOREIGN KEY (ingri_id) references ingridient(ingri_id) ON DELETE restrict ON UPDATE cascade, 
 FOREIGN KEY (time_id) references time(time_id) ON DELETE restrict ON UPDATE cascade, 
 FOREIGN KEY (cbc_id) references cuisine_by_country(cbc_id) ON DELETE restrict ON UPDATE cascade,
-FOREIGN KEY (nutin_id) references nutritional_info(nutin_id) ON DELETE restrict ON UPDATE cascade, 
+#FOREIGN KEY (nutin_id) references nutritional_info(nutin_id) ON DELETE restrict ON UPDATE cascade, 
 constraint valid_recipe_type check (recipe_type in ('cooking','pastry')), #Will remove the #, just used for the dummy data
 constraint valid_difficulty_level check (difficulty_level between 1 and 5),
 constraint valid_grams_fat_per_serving check (grams_fat_per_serving>=0), 
@@ -172,6 +171,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 create table recipe_step(
 recipe_id int(7) unsigned not null, 
 step_id int(7) unsigned not null, 
+step_order int(3) not null,
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
 PRIMARY KEY(recipe_id,step_id),
 FOREIGN KEY (recipe_id) references recipe(recipe_id) ON DELETE restrict ON UPDATE cascade, 
@@ -190,14 +190,14 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 create table recipe_ingridient(
 recipe_id int(7) unsigned not null, 
 ingri_id int(10) unsigned not null, 
-quantity int(4) default null,
+quantity numeric(6,2) default null,
 quantity_type varchar(30) default null, 
 unclear_quantity varchar(60) default null,
 last_update timestamp not null default current_timestamp() ON UPDATE current_timestamp(),
 PRIMARY KEY(recipe_id, ingri_id),
 FOREIGN KEY (recipe_id) references recipe(recipe_id) ON DELETE restrict ON UPDATE cascade,
 FOREIGN KEY (ingri_id) references ingridient(ingri_id) ON DELETE restrict ON UPDATE cascade,
-constraint quantity_type check (quantity_type in('number','grams','mls','teaspoon','tablespoon','cup')) )
+constraint quantity_type check (quantity_type in('number','grams','lb','oz','mls','teaspoon','tablespoon','cup','can')) )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 create table recipe_meal_type(
@@ -302,7 +302,7 @@ create index idx_fk_ingrigr_id on ingridient(ingrigr_id);
 create index idx_fk_ingri_id on recipe(ingri_id);
 create index idx_fk_time_id on recipe(time_id);
 create index idx_fk_cbc_id on recipe(cbc_id);
-create index idx_fk_nutin_id on recipe(nutin_id);
+#create index idx_fk_nutin_id on recipe(nutin_id);
 create index idx_fk_recipe_id on recipe_etiquette(recipe_id);
 create index idx_fk_etiq_id on recipe_etiquette(etiq_id);
 create index idx_fk_recipe_id on recipe_tip(recipe_id);
@@ -314,7 +314,7 @@ create index idx_fk_step_id on recipe_step(step_id);
 create index idx_fk_recipe_id on recipe_thematic_section(recipe_id);
 create index idx_fk_themsec_id on recipe_thematic_section(themsec_id);
 create index idx_fk_recipe_id on recipe_ingridient(recipe_id);
-create index idx_fk_nutin_id on recipe_ingridient(ingri_id);
+#create index idx_fk_nutin_id on recipe_ingridient(ingri_id);
 create index idx_fk_cook_id on cook_specialization(cook_id);
 create index idx_fk_cbc_id on cook_specialization(cbc_id);
 create index idx_fk_season_number on episode(season_number);
