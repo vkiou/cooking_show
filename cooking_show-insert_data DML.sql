@@ -10,9 +10,9 @@ insert into cuisine_by_country(country) values('Albanian'),('Algerian'),('Americ
 ('Romanian'),('Russian'),('Serbian'),('Slovak'),('Slovenian'),('Spanish'),('Sri Lankan'),('Swiss'),('Syrian'),('Tajik'),('Thai'),('Turkish'),('Ukrainian'),
 ('Yemeni');
 #ok
-insert into ingridient_group(name, description) values ('spices and essential oils',''),('coffee tea and their products',''),('preserved foods',''),
-('sweeteners',''),('fats and oils',''),('milk eggs and their products',''),('meat and its products',''),('fish and their products',''),('cereals and their products',''),
-('various foods of plant origin',''),('products with sweeteners',''),('various drinks','');
+insert into ingridient_group(name, description) values ('spices and essential oils',' like salt, pepper or coconut oil'),('coffee tea and their products','like green tea, arabica coffee'),('preserved foods','like tinned fish'),
+('sweeteners','like sugar or stevia'),('fats and oils','like butter or olive oil'),('milk eggs and their products','like cow milk, jogurt or eggs'),('meat and its products','like lamp meat or chicken'),('fish and their products','like shrimps or sea breams'),('cereals and their products','like granola or bread'),
+('various foods of plant origin','like fruits or vegetables'),('products with sweeteners','like wipped cream'),('various drinks','like juice, wine, or beer');
 #ok
 insert into meal_type(name) values ('breakfast'),('lunch'),('supper'),('dinner');
 #ok
