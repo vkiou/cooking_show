@@ -1,7 +1,7 @@
 use cooking_show;
 
 #insert data
-#ok
+
 insert into cuisine_by_country(country) values('Albanian'),('Algerian'),('American'),('Arab'),('Argentine'),('Armenian'),('Austrian'),('Azerbaijani'),
 ('Bahraini'),('Belarusian'),('Belgian'),('Bolivian'),('Bosnia and Herzegovina'),('Brazilian'),('British'),('Bulgarian'),('Canadian'),('Chinese'),('Colombian'),
 ('Croatian'),('Cypriot'),('Czech'),('Dutch'),('Egyptian'),('Emirati'),('Estonian'),('Finnish'),('French'),('Georgian'),('German'),('Greek'),('Hungarian'),
@@ -9,19 +9,19 @@ insert into cuisine_by_country(country) values('Albanian'),('Algerian'),('Americ
 ('Lithuanian'),('Macedonian'),('Mexican'),('Moldovan'),('Montenegrin'),('Moroccan'),('Omani'),('Pakistani'),('Palestinian'),('Peruvian'),('Polish'),('Portuguese'),
 ('Romanian'),('Russian'),('Serbian'),('Slovak'),('Slovenian'),('Spanish'),('Sri Lankan'),('Swiss'),('Syrian'),('Tajik'),('Thai'),('Turkish'),('Ukrainian'),
 ('Yemeni');
-#ok
-insert into ingridient_group(name, description) values ('spices and essential oils',' like salt, pepper or coconut oil'),('coffee tea and their products','like green tea, arabica coffee'),('preserved foods','like tinned fish'),
-('sweeteners','like sugar or stevia'),('fats and oils','like butter or olive oil'),('milk eggs and their products','like cow milk, jogurt or eggs'),('meat and its products','like lamp meat or chicken'),('fish and their products','like shrimps or sea breams'),('cereals and their products','like granola or bread'),
-('various foods of plant origin','like fruits or vegetables'),('products with sweeteners','like wipped cream'),('various drinks','like juice, wine, or beer');
-#ok
+
+insert into ingridient_group(name, description) values ('spices and essential oils',''),('coffee tea and their products',''),('preserved foods',''),
+('sweeteners',''),('fats and oils',''),('milk eggs and their products',''),('meat and its products',''),('fish and their products',''),('cereals and their products',''),
+('various foods of plant origin',''),('products with sweeteners',''),('various drinks','');
+
 insert into meal_type(name) values ('breakfast'),('lunch'),('supper'),('dinner');
-#ok
+
 insert into etiquette(type_of_meal) values ('brunch'),('elevenses'),('tea'),('snack'),('drink'),('beverage'),('banquet'),('barbeque'),('buffet'),('haute cousine'),
 ('kids meal'),('salad'),('appetiser'),('entree'),('main course'),('side dish'),('dessert'),('soup'),('picnic'),('platter'),('tv dinner'),('value meal');
-#ok
-insert into thematic_section(name,description) values ('for students',' dishes appropriate for students '),('summer recipes',' these recipies show high resistance to higher temperatures '),('budget meals',' low budget dishes'),('fasting','recipies appropriate for fasting diet'),('childrens','recipies with natural ingredients, appropriate for kids'), 
-('party','fingerfood appropriate for social gatherings'),('light meal','dishes with low calorie count'),('quick dishes','recipies which need less time to get prepared');
-#ok
+
+insert into thematic_section(name,description) values ('for students',''),('summer recipes',''),('budget meals',''),('fasting',''),('childrens',''), 
+('party',''),('light meal',''),('quick dishes','');
+
 insert into tip(description) values ('double it next time'),('use more buckwheat'),('add rice in after 15 minutes and use more water'),('delicious'),
 ('super yummy'),('very good'),('eh'),('extremely good'),('lukes favorite way to eat noodles. absorbs a lot of water, need to add more second day'),
 ('dont cook bacon too long'),('flip pretzel sticks half way through'),('best lentil soup'),('so good'),
@@ -32,11 +32,11 @@ insert into tip(description) values ('double it next time'),('use more buckwheat
 ('super healthy and yummy. combined two rexpies, use 1 c lentils, 3 sweet potatoes and add more celery and spinach. also use 1/4 tsp each paprika and cumin in 
 dressing.'),('make some rice to go with it'),('Stick with brown or green lentils or adjust the cooking time. Red lentils cook in under half the cooking time of 
 brown and green.'),('Don’t skip the lemon. Even though it’s a small amount it adds a nice hint of brightness.');
-#ok
+
 insert into time(preparing_time,cooking_time) values (20,5),(10,45),(15,20),(60,72),(10,60),(5,80),(5,10),(15,40),(10,50),(20,20),(30,45),(10,110),
 (20,35),(10,45),(120,11),(20,36),(10,30),(20,40),(20,45),(10,15),(10,25),(70,40),(70,32),(5,60),(5,15),(10,20),(15,35),
 (15,10),(10,65),(20,5),(30,20),(15,8),(10,10),(0,45),(20,25),(10,4),(0,16),(0,50),(0,85),(0,80),(5,5);
-#ok
+
 insert into ingridient(name,ingrigr_id,calories_per_100_grams) values ('chicken',7,186),('egg',6,143),('white rice',9,109),('canola oil',5,884),('bacon',7,468),
 ('mushroom',10,44),('green onion',10,19),('bean sprout',10,27),('peas',10,77),('soy sauce',10,60),('lentils',10,114),('olive oil',5,890),('red onion',10,44),
 ('garlic',10,44),('carrots',10,41),('celery',10,14),('crushed tomato',10,32),('vegetable stock',10,8),('chicken stock',10,6),('cumin',1,375),('coriander',1,23),
@@ -64,7 +64,7 @@ insert into ingridient(name,ingrigr_id,calories_per_100_grams) values ('chicken'
 ('red pepper',10,26),('feta cheese',6,265),('ground cinnamon',1,250),('tuna steak',5,82),('capers',10,23),('adobo sauce',10,226),('tortilla chips',9,488),
 ('Monterey Jack cheese',6,373),('spaghetti pasta',9,385),('canned sardines',3,208),('apple cider vinegar',10,0),('tomato paste',10,82),('pesto sauce',10,534),
 ('penne pasta',9,157),('soured milk',6,56),('green pepper',10,28.1),('cilantro leaves',10,23),('black olive',10,36),('almond milk',10,22.4),('ground ginger',1,333); 
-#ok
+
 insert into equipment(name,instructions) values ('skillet','skillets are commonly used to stir-fry or sauté.'),('slotted spoon','a spoon with slots 
 which let liquid pass through while preserving the larger solids on top.'),('pot','traditionally used to make stock or broth.'),
 ('stick blender','a kitchen blade grinder used to blend ingredients or purée food.'),('grater','a kitchen utensil used to grate foods into fine pieces.'),
@@ -88,7 +88,7 @@ wanted elements from unwanted material or for controlling the particle size dist
 sheet material.'),('colander','a kitchen utensil used to strain foods such as pasta or to rinse vegetables.'),('rice cooker','an automated kitchen appliance 
 designed to boil or steam rice.'),('mortar and pestle','a set of two simple tools used to prepare ingredients or substances by crushing and grinding them into a 
 fine paste or powder.'),('cutting board','a durable board on which to place material for cutting.');
-#ok
+
 insert into step(description) values ('In a large skillet, heat oil over medium-high heat. Pour egg into the pan. As egg sets, lift edges, letting uncooked 
 portion flow underneath. When egg is completely cooked, remove to a plate. Set aside.'),('In the same skillet, cook bacon over medium heat until crisp. Using a 
 slotted spoon, remove to paper towels; drain, reserving 2 tablespoons drippings. Saute mushrooms and onions in the drippings. Stir in the rice, bean sprouts, 
@@ -396,7 +396,7 @@ cook until it begins to brown and become aromatic, about 1-2 minutes. Remove pan
 pasta is done, add the drained pasta to the pan and top with 8 fluid ounces pesto sauce. Stir to mix ingredients, then serve.'),('Put all the ingredients in a 
 saucepan and whisk constantly over a gentle heat, ideally with a milk frother if you have one. Once hot, pour into mugs and sprinkle with a little more 
 cinnamon to serve.');
-#ok
+
 insert into recipe(name,difficulty_level,recipe_type,description,portions,grams_fat_per_serving,grams_protein_per_serving,grams_carbohydrates_per_serving,
 ingri_id,time_id,cbc_id) values
 ('fried rice',1,'cooking','Moms fried rice',4,15,14,44,3,1,18),
@@ -481,14 +481,14 @@ comfort food!',6,12.3,17.3,70.6,3,39,33),
 ('pesto tomato penne',1,'cooking','Pesto Penne with Burst Cherry Tomatoes, a simple plant-based penne pasta recipe with burst cherry tomatoes,crispy garlic and
  pesto sauce.',4,14,10,48,176,25,38),
 ('turmeric latte',1,'cooking','Whizz together and benefit from the anti-inflammatory and antioxidant effects from the curcumin.',2,2,1,3,182,41,33);
-#ok
+
 insert into recipe_ingridient(recipe_id,ingri_id,quantity,quantity_type) values (1,2,1,'number'),(1,3,3,'cup'),(1,4,1,'teaspoon'),(1,5,8,'number'),(1,6,1,'cup'),
 (1,7,8,'number'),(1,8,1,'cup'),(1,9,1,'cup'),(1,10,0.25,'cup'),(2,11,400,'grams'),(2,12,2,'tablespoon'),(2,13,1,'number'),(2,15,1,'number'),
 (2,16,2,'number'),(2,17,400,'grams'),(2,18,1500,'mls'),(2,20,0.5,'teaspoon'),(2,21,0.5,'teaspoon'),(2,22,1.5,'teaspoon'),(2,23,2,'number'),(2,24,1,'number'),
 (2,25,1,'number'),(2,26,0.25,'teaspoon'),(2,27,0.25,'teaspoon'),(3,30,1,'cup'),(3,31,1,'cup'),(3,32,1,'number'),(3,24,1,'number'),(3,25,1,'number'),
 (3,13,0.25,'cup'),(3,12,1,'tablespoon'),(3,34,0.5,'cup'),(4,35,1,'cup'),(4,11,1,'cup'),(4,36,4.5,'cup'),(4,12,3,'tablespoon'),(4,37,2,'number'),(4,20,1,'teaspoon'),(4,28,0.5,'cup'),(4,2,4,'number'),(4,38,2.5,'tablespoon'),(4,39,0.25,'cup'),(5,12,2,'tablespoon'),(5,15,1.5,'cup'),
 (5,37,1.5,'cup'),(5,11,1.25,'cup'),(5,44,1.5,'teaspoon'),(5,45,0.5,'teaspoon'),(5,46,0.5,'teaspoon'),(5,41,1.5,'cup'),(5,42,2,'cup'),
-(5,24,1,'tablespoon'),(5,36,1,'can'),(5,43,1,'can'),(6,48,8,'number'),(6,49,7,'number'),(6,15,5,'number'),(6,37,1,'number'),(6,26,1,'tablespoon'),
+(5,24,1,'tablespoon'),(5,36,14.5,'oz'),(5,43,14.5,'oz'),(6,48,8,'number'),(6,49,7,'number'),(6,15,5,'number'),(6,37,1,'number'),(6,26,1,'tablespoon'),
 (6,27,1,'teaspoon'),(6,50,4,'teaspoon'),(6,22,0.5,'teaspoon'),(6,12,4,'tablespoon'),(7,63,2,'cup'),(7,10,0.25,'cup'),(7,72,2.5,'tablespoon'),(7,134,1,'teaspoon'),
 (7,100,0.5,'teaspoon'),(7,4,1,'tablespoon'),(7,27,0.5,'number'),(7,11,1,'cup'),(7,7,2,'number'),(8,51,2,'cup'),(8,52,3,'number'),(8,139,50,'grams'),
 (8,6,2.5,'number'),(8,53,0.5,'number'),(8,54,1,'teaspoon'),(8,26,0.33,'teaspoon'),(8,55,2,'tablespoon'),(8,12,3,'tablespoon'),(8,56,1.5,'tablespoon'),
@@ -510,7 +510,7 @@ insert into recipe_ingridient(recipe_id,ingri_id,quantity,quantity_type) values 
 (20,63,1.5,'cup'),(20,89,1.5,'cup'),(21,12,1,'tablespoon'),(21,26,1,'teaspoon'),(21,27,0.5,'teaspoon'),(21,91,2,'number'),(21,57,2,'tablespoon'),
 (21,92,2,'tablespoon'),(21,174,1,'tablespoon'),(21,49,1.5,'lb'),(22,61,3,'cup'),(22,26,1,'teaspoon'),(22,94,1,'tablespoon'),(22,93,1,'tablespoon'),
 (22,60,6,'tablespoon'),(22,111,250,'grams'),(23,61,2.5,'cup'),(23,74,0.75,'teaspoon'),(23,94,1,'teaspoon'),(23,60,1,'cup'),(23,93,1.5,'cup'),(23,95,3,'number'),
-(23,96,1,'teaspoon'),(24,49,1,'lb'),(24,12,1,'tablespoon'),(24,97,1,'can'),(24,98,1,'cup'),(24,24,1,'tablespoon'),(24,85,2,'teaspoon'),(24,22,0.5,'teaspoon'),
+(23,96,1,'teaspoon'),(24,49,1,'lb'),(24,12,1,'tablespoon'),(24,97,15,'oz'),(24,98,1,'cup'),(24,24,1,'tablespoon'),(24,85,2,'teaspoon'),(24,22,0.5,'teaspoon'),
 (24,76,0.5,'teaspoon'),(24,26,0.5,'teaspoon'),(24,99,0.25,'teaspoon'),(25,12,2,'tablespoon'),(25,5,4,'oz'),(25,100,0.5,'teaspoon'),(25,27,0.5,'teaspoon'),
 (25,37,0.75,'cup'),(25,43,28,'oz'),(25,172,12,'oz'),(25,101,0.25,'cup'),(26,62,1.5,'cup'),(26,60,6,'tablespoon'),(26,93,0.25,'cup'),(26,73,2.25,'teaspoon'),
 (26,61,5,'cup'),(26,26,1,'teaspoon'),(26,2,3,'number'),(26,112,1,'cup'),(27,61,3,'cup'),(27,103,1,'cup'),(27,74,1,'teaspoon'),(27,94,1.5,'teaspoon'),
@@ -541,10 +541,10 @@ insert into recipe_ingridient(recipe_id,ingri_id,quantity,quantity_type) values 
 (46,21,2,'teaspoon'),(46,166,0.5,'teaspoon'),(46,76,0.5,'teaspoon'),(46,126,2,'cup'),(46,36,2,'cup'),(46,180,0.5,'cup'),(46,33,0.5,'cup'),(46,55,0.33,'cup'),
 (47,12,6,'tablespoon'),(47,37,1,'number'),(47,31,1,'cup'),(47,44,8,'number'),(47,28,2,'tablespoon'),(47,167,4,'number'),(47,181,1,'cup'),(47,168,4,'teaspoon'),
 (48,60,1,'cup'),(48,72,1.5,'cup'),(48,2,1,'number'),(48,95,1,'number'),(48,96,1,'tablespoon'),(48,61,2.5,'cup'),(48,74,1,'teaspoon'),(48,26,0.75,'teaspoon'),
-(48,112,10,'oz'),(49,172,8,'oz'),(49,12,6,'tablespoon'),(49,156,0.25,'cup'),(49,25,2,'teaspoon'),(49,100,0.5,'teaspoon'),(49,26,0.5,'teaspoon'),(49,173,1,'can'),
+(48,112,10,'oz'),(49,172,8,'oz'),(49,12,6,'tablespoon'),(49,156,0.25,'cup'),(49,25,2,'teaspoon'),(49,100,0.5,'teaspoon'),(49,26,0.5,'teaspoon'),(49,173,4.38,'oz'),
 (49,168,3,'tablespoon'),(49,24,5,'tablespoon'),(49,28,3,'tablespoon'),(50,177,8,'oz'),(50,26,2,'tablespoon'),(50,12,2,'teaspoon'),(50,31,2,'cup'),(50,176,8,'oz'),
 (51,182,350,'mls'),(51,76,0.25,'teaspoon'),(51,166,0.25,'teaspoon'),(51,183,0.25,'teaspoon'),(51,96,0.5,'teaspoon'),(51,92,1,'teaspoon');
-#ok
+
 insert into recipe_ingridient(recipe_id,ingri_id,unclear_quantity) values (1,1,'some'),(2,14,'2 cloves minced'),(2,28,'some to garnish'),(2,29,'some to serve'),
 (3,14,'2 cloves minced'),(3,28,'handful'),(3,33,'handful'),(3,26,'some for taste'),(3,27,'some for taste'),(4,14,'1 clove minced'),(4,26,''),(4,27,''),(4,22,''),
 (4,40,''),(5,14,'4 cloves minced'),(5,26,''),(5,27,''),(5,47,''),(6,14,'15-20 cloves minced'),(7,83,'1 inch'),(7,14,'2 cloves minced'),(7,3,'some for serving'),
@@ -554,7 +554,7 @@ insert into recipe_ingridient(recipe_id,ingri_id,unclear_quantity) values (1,1,'
 (36,121,'1 bunch'),(36,21,'1 handful'),(36,151,''),(37,27,'a pinch'),(38,14,'2 cloves minced'),(39,100,'a pinch'),(40,14,'1-2 cloves minced'),
 (42,81,'juice of 1 lime'),(42,151,'to taste'),(42,152,'to serve'),(42,14,'5 cloves'),(42,155,'some for topping'),(44,100,'few dashes'),(45,155,''),(45,27,''),
 (45,118,'1 or 2 handfuls'),(45,165,''),(46,26,''),(46,27,''),(46,14,''),(47,14,'3 cloves minced'),(47,26,''),(47,27,''),(50,14,'2 cloves sliced'),(51,27,'a grind');
-#ok
+
 insert into recipe_equipment(recipe_id,equip_id) values (1,1),(1,2),(2,3),(2,4),(2,5),(3,3),(3,6),(3,7),(4,8),(4,1),(4,7),(5,3),(6,9),(7,7),(7,1),(8,32),(8,7),
 (8,3),(9,10),(9,7),(10,3),(11,3),(11,1),(12,3),(12,1),(13,3),(14,10),(14,7),(15,22),(15,7),(15,12),(15,10),(15,11),(15,1),(15,2),(16,7),(16,13),(16,14),(16,15),
 (17,1),(18,7),(18,1),(19,8),(20,7),(20,16),(20,12),(20,14),(21,7),(21,17),(22,10),(22,6),(22,19),(22,20),(22,12),(23,10),(23,11),(23,7),(23,22),(23,23),(24,8),
@@ -562,7 +562,7 @@ insert into recipe_equipment(recipe_id,equip_id) values (1,1),(1,2),(2,3),(2,4),
 (29,25),(29,10),(30,28),(30,9),(31,3),(31,29),(32,1),(32,11),(32,7),(32,26),(32,21),(33,7),(35,3),(36,5),(36,3),(37,17),(38,3),(38,1),(39,30),(39,3),(39,6),
 (39,25),(39,7),(40,30),(40,7),(40,1),(40,24),(40,33),(41,14),(41,7),(41,6),(42,3),(42,13),(42,16),(43,13),(43,31),(43,1),(44,6),(44,7),(44,1),(44,10),(45,10),
 (45,13),(45,25),(45,7),(46,10),(46,8),(47,1),(48,10),(48,11),(48,7),(48,23),(49,3),(49,1),(50,30),(50,1),(51,8),(51,25);
-#ok
+
 insert into recipe_step(recipe_id,step_id,step_order) values (1,1,1),(1,2,2),(2,3,1),(2,4,2),(2,5,3),(2,6,4),(2,7,5),(2,8,6),(2,9,7),(3,10,1),(3,11,2),(3,12,3),
 (4,13,1),(4,14,2),(4,15,3),(4,16,4),(4,17,5),(5,18,1),(5,19,2),(5,20,3),(5,21,4),(5,22,5),(5,23,6),(5,24,7),(6,25,1),(6,26,2),(6,27,3),(6,28,4),(6,29,5),(6,30,6),
 (6,31,7),(7,32,1),(7,33,2),(7,34,3),(8,35,1),(8,36,2),(8,37,3),(8,38,4),(8,39,5),(8,40,6),(9,41,1),(9,42,2),(9,43,3),(9,44,4),(9,45,5),(10,46,1),(10,47,2),
@@ -581,7 +581,7 @@ insert into recipe_step(recipe_id,step_id,step_order) values (1,1,1),(1,2,2),(2,
 (45,223,1),(45,224,2),(45,225,3),(45,226,4),(46,227,1),(46,228,2),(46,229,3),(46,230,4),(46,231,5),(47,232,1),(47,233,2),(47,234,3),(47,235,4),(47,236,5),
 (47,237,6),(47,238,7),(47,239,8),(47,240,9),(47,241,10),(47,242,11),(48,243,1),(48,244,2),(48,245,3),(48,246,4),(48,247,5),(48,248,6),(48,249,7),(48,250,8),
 (48,251,9),(48,252,10),(48,253,11),(49,254,1),(49,255,2),(49,256,3),(50,257,1),(50,258,2),(50,259,3),(51,260,1);
-#ok
+
 insert into recipe_etiquette(recipe_id,etiq_id) values (1,15),(1,16),(2,14),(2,15),(2,16),(2,18),(3,12),(3,14),(3,15),(3,16),(4,15),(5,14),(5,15),(5,16),(5,18),
 (6,15),(7,14),(7,15),(8,12),(8,14),(8,15),(8,16),(9,12),(9,14),(9,15),(9,16),(10,14),(10,15),(10,16),(10,18),(11,14),(11,15),(11,16),(11,18),(12,15),(13,11),
 (13,14),(13,15),(13,16),(13,18),(14,12),(14,14),(14,15),(14,16),(15,1),(15,2),(15,4),(15,11),(15,17),(15,19),(16,14),(16,15),(16,16),(16,18),(17,14),(17,15),
@@ -591,21 +591,21 @@ insert into recipe_etiquette(recipe_id,etiq_id) values (1,15),(1,16),(2,14),(2,1
 (36,15),(36,16),(36,18),(37,11),(37,12),(37,14),(37,15),(37,16),(38,12),(38,14),(38,15),(38,16),(39,12),(39,14),(39,15),(39,16),(40,15),(41,15),(42,11),(42,14),
 (42,15),(42,16),(42,18),(43,1),(43,12),(43,14),(43,15),(43,16),(44,1),(44,2),(44,4),(44,15),(44,19),(45,12),(45,14),(45,15),(45,16),(46,1),(46,12),(46,14),(46,15),
 (46,16),(47,15),(48,1),(48,2),(48,4),(48,11),(48,17),(48,19),(49,15),(50,15),(51,5),(51,1),(51,2),(51,19);
-#ok
+
 insert into recipe_meal_type(recipe_id,mealtype_id) values (1,2),(1,3),(1,4),(2,2),(2,3),(2,4),(3,2),(3,4),(4,2),(4,4),(5,2),(5,3),(5,4),(6,2),(6,4),(7,2),(7,4),
 (8,2),(8,3),(8,4),(9,2),(9,3),(9,4),(10,2),(10,3),(10,4),(11,2),(11,3),(11,4),(12,2),(12,4),(13,2),(13,4),(14,2),(14,3),(14,4),(15,1),(15,3),(15,4),(16,2),(16,4),
 (17,2),(17,4),(18,2),(18,4),(19,2),(19,4),(20,1),(20,2),(20,3),(20,4),(21,2),(21,4),(22,1),(22,3),(23,1),(23,3),(24,2),(24,4),(25,2),(25,4),(26,1),(26,3),(27,1),
 (27,2),(27,3),(27,4),(28,1),(28,3),(28,4),(29,2),(29,3),(29,4),(30,2),(30,4),(31,2),(31,4),(32,1),(32,3),(32,4),(33,2),(33,4),(34,2),(34,4),(35,2),(35,4),(36,2),
 (36,3),(36,4),(37,2),(37,4),(38,2),(38,3),(38,4),(39,2),(39,3),(39,4),(40,2),(40,4),(41,2),(41,4),(42,2),(42,3),(42,4),(43,2),(43,4),(44,1),(44,2),(44,3),(44,4),
 (45,2),(45,3),(45,4),(46,2),(46,3),(46,4),(47,2),(47,4),(48,1),(48,3),(48,4),(49,2),(49,4),(50,2),(50,4),(51,1),(51,2),(51,3),(51,4);
-#ok
+
 insert into recipe_tip(recipe_id,tip_id) values (2,1),(2,30),(3,2),(4,3),(5,31),(7,4),(10,5),(12,6),(13,7),(13,9),(14,8),(14,10),(14,18),(15,11),(16,12),(17,13),
 (18,14),(19,15),(20,16),(24,17),(25,18),(27,19),(26,20),(30,21),(31,22),(32,23),(34,24),(37,25),(45,28),(46,13),(47,26),(47,29),(49,27);
-#ok
+
 insert into recipe_thematic_section(recipe_id,themsec_id) values (1, 8),(2, 1),(3, 4),(4, 7),(5, 1),(6, 2),(7, 7),(8, 2),(9, 3),(10, 8),(11, 7),(12, 1),(13, 3),
 (14, 4),(15, 8),(16, 8),(17, 8),(18, 3),(19, 2),(20, 2),(21, 4),(22, 6),(23, 4),(24, 8),(25, 1),(26, 7),(27, 3),(28, 3),(29, 8),(30, 2),(31, 4),(32, 6),(33, 4),
 (34, 2),(35, 3),(36, 7),(37, 1),(38, 1),(39, 2),(40, 3),(41, 1),(42, 7),(43, 2),(44, 8),(45, 7),(46, 6),(47, 8),(48, 3),(49, 1),(50, 7);
-#ok
+
 insert into cook(first_name,last_name,phone_number,date_of_birth,years_of_experience,cook_rank) values 
 ('David','Glover','(043)026-2','1960-11-21',14,'third cook'),('Lexie','Blick','(152)446-5','2004-06-19',1,'third cook'),
 ('Roma','Howell','(173)033-1','1974-10-25',24,'third cook'),('Dayton','Jacobi','(235)737-2','2002-01-28',3,'third cook'),
@@ -657,13 +657,7 @@ insert into cook(first_name,last_name,phone_number,date_of_birth,years_of_experi
 ('Brooklyn','Murazik','851-375-61','1972-06-01',25,'chef'),('Micheal','Schultz','861-831-61','1996-09-10',2,'chef'),
 ('Maybell','Conn','942-061-86','1973-10-28',22,'chef'),('Camren','Collier','950-890-70','1969-11-19',35,'chef'),
 ('Hank','Osinski','983-341-20','1971-12-07',22,'chef'),('Dallas','Maggio','991-254-86','1974-08-30',6,'chef');
-#ok
-insert into season(season_number) values (1),(2),(3),(4),(5),(6);
-#ok
-insert into episode(season_number,episode_number) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),
-(2,8),(2,9),(2,10),(3,1),(3,2),(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10),(4,1),(4,2),(4,3),(4,4),(4,5),(4,6),(4,7),(4,8),(4,9),(4,10),(5,1),(5,2),(5,3),
-(5,4),(5,5),(5,6),(5,7),(5,8),(5,9),(5,10),(6,1),(6,2),(6,3),(6,4),(6,5),(6,6),(6,7),(6,8),(6,9),(6,10);
-#ok
+
 insert into cook_specialization(cook_id,cbc_id) values (1, 34),(2, 56),(3, 56),(4, 56),(5, 63),(6, 48),(6, 30),(7, 3),(7, 48),(8, 70),(8, 56),(9, 34),(9, 3),
 (10, 3),(10, 51),(11, 30),(11, 48),(12, 4),(12, 51),(13, 43),(13, 4),(13, 18),(14, 36),(14, 48),(14, 3),(15, 15),(15, 36),(15, 28),(16, 4),(16, 15),(16, 56),
 (17, 31),(17, 43),(17, 68),(17, 18),(18, 59),(18, 51),(18, 18),(18, 68),(19, 59),(19, 43),(19, 51),(19, 48),(20, 18),(20, 48),(20, 51),(20, 3),(21, 4),(21, 59),
@@ -719,40 +713,201 @@ insert into cook_specialization(cook_id,cbc_id) values (1, 34),(2, 56),(3, 56),(
 (100, 18),(100, 63),(100, 33),(100, 34),(100, 4),(100, 15),(100, 51),(100, 28),(100, 36),(100, 3),(100, 68),(100, 70),(100, 59),(100, 30),(100, 48),(100, 38),
 (100, 56),(100, 43);
 
-/*when i delete a tuple, the primary key with auto_increment value must return to the smallest next available number(maybe with update?)*/
-select * from cook;
-select * from cook_specialization;
-select * from cuisine_by_country;
-select * from episode;
-select * from episode_cook_judge;#
-select * from episode_cook_participant;#
-select * from equipment;
-select * from etiquette;
-select * from ingridient;
-select * from ingridient_group;
-select * from meal_type;
-select * from recipe;
-select * from recipe_cook;# μαλλον δε χρειαζεται, γιατι φτιαχνεται απο join cook_specialization και recipe
-select * from recipe_equipment;
-select * from recipe_etiquette;
-select * from recipe_ingridient;
-select * from recipe_meal_type;
-select * from recipe_step;
-select * from recipe_thematic_section;
-select * from recipe_tip;
-select * from season;
-select * from step;
-select * from thematic_section;
-select * from time;
-select * from tip;
+insert into season(season_number,year) values (1,2024),(2,2025),(3,2026),(4,2027),(5,2028),(6,2029);
 
-#Για τυχαια επιλογή κουζινων, θελω το cuisine_by_country,recipe,cook_specialization,cook
-#Μηπως πρεπει να τα βρω το καθενα ξεχωριστα και μετα να καλω το ενα μεσω του αλλου ή ολα μαζι σε εναν πινακα με τη μια?(δε βγαινει ομως distinct, εχω duplicates)
-#ολα τα διαφορετικα cbc των συνταγων(με τυχαιες 10 επιλογες)
-select cbc_id from recipe group by cbc_id order by rand() limit 10;
-#
+insert into episode(episode_id,episode_number,season_id) values (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(9,9,1),(10,10,1),(11,1,2),
+(12,2,2),(13,3,2),(14,4,2),(15,5,2),(16,6,2),(17,7,2),(18,8,2),(19,9,2),(20,10,2),(21,1,3),(22,2,3),(23,3,3),(24,4,3),(25,5,3),(26,6,3),(27,7,3),(28,8,3),
+(29,9,3),(30,10,3),(31,1,4),(32,2,4),(33,3,4),(34,4,4),(35,5,4),(36,6,4),(37,7,4),(38,8,4),(39,9,4),(40,10,4),(41,1,5),(42,2,5),(43,3,5),(44,4,5),(45,5,5),
+(46,6,5),(47,7,5),(48,8,5),(49,9,5),(50,10,5),(51,1,6),(52,2,6),(53,3,6),(54,4,6),(55,5,6),(56,6,6),(57,7,6),(58,8,6),(59,9,6),(60,10,6);
 
 
+/*Create views*/
 
+create view recipe_cook as select cook_id,recipe_id,recipe.cbc_id 
+						   from cook_specialization join recipe on cook_specialization.cbc_id=recipe.cbc_id 
+                           order by cook_id,cbc_id,recipe_id;
 
+                           
+delimiter $$
+create procedure generate_episodes()
+begin
+    
+	declare season_count int;
+    declare r_season_count int;
+    declare episode_count int;
+    declare r_episode_count int;
+    declare r_episode_id int;
+    declare r_cbc_id int;
+    declare r_cook_id int;
+    declare r_recipe_id int;
+    declare r_judge_id int;
+    declare r_judge_score int;
+    declare r_participant_score_id int;
+    declare i int;
+    declare j int;
+    declare k int;
+    declare a int;
+    declare aa int;
+    declare b int;
+    declare bb int;
+    declare c int;
+    declare cc int;
 
+	drop table if exists temp_country;
+	drop table if exists temp_cooks;
+	drop table if exists temp_recipe;
+
+    -- Temporary tables to track usage counts
+    create temporary table temp_country(cbc_id int(7),usage_count int default 0);
+    create temporary table temp_cooks(cook_id int(7),usage_count int default 0);
+    create temporary table temp_recipe(recipe_id int(7),usage_count int default 0);
+
+    -- initialize usage counts
+    insert into temp_country(cbc_id) select distinct recipe.cbc_id from cuisine_by_country 
+									 join recipe where cuisine_by_country.cbc_id=recipe.cbc_id; 
+    insert into temp_cooks(cook_id) select distinct cook_id from cook_specialization 
+									where cbc_id in (select cbc_id from temp_country);
+    insert into temp_recipe(recipe_id) select distinct recipe_id from recipe_cook;
+
+    
+    set season_count=(select count(season_id) from season);
+    set r_season_count=1;
+    while (r_season_count<season_count+1)
+		do
+            
+			set episode_count=(select count(episode_id) from episode where season_id=r_season_count);
+            set r_episode_count=1;
+
+			while (r_episode_count<episode_count+1)
+				do
+                    set r_episode_id=(select episode_id from episode where season_id=r_season_count and episode_number=r_episode_count);
+					set i=1;
+                    -- select 10 countries, 10 participants and 10 recipes for the episode
+					while (i<11)
+						do	
+							-- select a country
+							select distinct cbc_id into r_cbc_id from temp_country 
+                            where cbc_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
+							order by rand() limit 1;
+                            
+                            -- select a cook participant
+							select cook_id into r_cook_id from temp_cooks 
+                            where cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
+							order by rand() limit 1;
+
+                            -- select a recipe
+							select recipe_id into r_recipe_id from temp_recipe 
+                            where recipe_id not in (select recipe_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
+							order by rand() limit 1;
+							
+                            -- insert the participant with his/her recipe
+							insert into episode_cook_participant(episode_id,cook_id,cbc_id,recipe_id) values (r_episode_id,r_cook_id,r_cbc_id,r_recipe_id);
+							
+							update temp_country set usage_count=usage_count+1 where cbc_id=r_cbc_id;
+                            update temp_cooks set usage_count=usage_count+1 where cook_id=r_cook_id;
+                            update temp_recipe set usage_count=usage_count+1 where recipe_id=r_recipe_id;
+							
+                            -- go to the next participant
+							set i=i+1;
+					end while;
+					
+					set j=1;
+                    -- select 3 judges for the episode
+					while (j<4)
+						do
+							-- select a cook judge
+							select cook_id into r_judge_id from temp_cooks 
+							where cook_id in 
+							(select temp_cooks.cook_id from temp_cooks where
+							temp_cooks.cook_id not in (select cook_id from episode_cook_judge where episode_id=r_episode_id) 
+                            and temp_cooks.cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id))
+							and usage_count<3
+							order by rand() limit 1;
+							
+							set k=1;
+                            -- set the score from each judge to each participant
+							while(k<11)
+								do
+							
+									-- pick a score
+									select FLOOR(RAND()*(5-1+1))+1 into r_judge_score;
+									
+									-- insert the jude with his/her score for the participant
+									insert into episode_cook_judge(episode_id,cook_id,ecp_id,judge_score) 
+									values (r_episode_id,r_judge_id,10*(r_episode_id-1)+k,r_judge_score);
+									
+                                    -- go to the next participant
+									set k=k+1;
+								end while;
+									
+							update temp_cooks set usage_count=usage_count+1 where cook_id=r_judge_id;        
+							
+                            -- go to the next judge
+							set j=j+1;
+					end while;
+                    
+                    select * from episode_cook_participant;
+                    
+                    if(r_episode_id>1)
+						then
+							set a=(select count(usage_count) from temp_country 
+								   where cbc_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+                                   and cbc_id not in(select cbc_id from episode_cook_participant where episode_id=r_episode_id));
+							set b=(select count(usage_count) from temp_cooks 
+								   where cook_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+                                   and cook_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id));
+							set c=(select count(usage_count) from temp_recipe 
+								   where recipe_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+                                   and recipe_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id));
+							set aa=1;
+                            set bb=1;
+                            set cc=1;
+							-- check if a cuisine was used for the last episode but not this one
+							if(a>0)
+								then
+									while(aa<a+1)
+										do
+											update temp_country set usage_count=0 
+											where cbc_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+                                            and cbc_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id);
+                                            set aa=aa+1;
+									end while;
+							end if;
+							-- check if a cook was used for the last episode but not this one
+							if(b>0)
+								then
+									while(bb<b+1)
+										do
+											update temp_cooks set usage_count=0 
+											where cook_id in (select cook_id from episode_cook_participant where episode_id=r_episode_id-1)
+                                            and cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id);
+                                            set bb=bb+1;
+									end while;
+							end if;
+							-- check if a recipe was used for the last episode but not this one
+							if(c>0)
+								then
+									while(cc<c+1)
+										do
+											update temp_recipe set usage_count=0 
+											where recipe_id in (select recipe_id from episode_cook_participant where episode_id=r_episode_id-1)
+                                            and recipe_id not in (select recipe_id from episode_cook_participant where episode_id=r_episode_id);
+                                            set cc=cc+1;
+									end while;
+							end if;
+                            
+					end if;
+                    
+                    -- go to the next episode
+					set r_episode_count=r_episode_count+1;
+			end while;
+            
+            -- go to the next season
+            set r_season_count=r_season_count+1;
+	end while;
+    
+end $$;
+
+delimiter ;
+
+call generate_episodes();
