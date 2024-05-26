@@ -727,13 +727,12 @@ create view recipe_cook as select cook_id,recipe_id,recipe.cbc_id
 						   from cook_specialization join recipe on cook_specialization.cbc_id=recipe.cbc_id 
                            order by cook_id,cbc_id,recipe_id;
 
+/*Create procedure to generate episodes and seasons*/
                            
 delimiter $$
-create procedure generate_episodes()
+create procedure `generate_episodes`(in season_id int)
 begin
     
-	declare season_count int;
-    declare r_season_count int;
     declare episode_count int;
     declare r_episode_count int;
     declare r_episode_id int;
@@ -770,144 +769,137 @@ begin
     insert into temp_recipe(recipe_id) select distinct recipe_id from recipe_cook;
 
     
-    set season_count=(select count(season_id) from season);
-    set r_season_count=1;
-    while (r_season_count<season_count+1)
-		do
-            
-			set episode_count=(select count(episode_id) from episode where season_id=r_season_count);
-            set r_episode_count=1;
+		set episode_count=(select count(episode_id) from episode where season_id=r_season_id);
+		set r_episode_count=1;
 
-			while (r_episode_count<episode_count+1)
-				do
-                    set r_episode_id=(select episode_id from episode where season_id=r_season_count and episode_number=r_episode_count);
-					set i=1;
-                    -- select 10 countries, 10 participants and 10 recipes for the episode
-					while (i<11)
-						do	
-							-- select a country
-							select distinct cbc_id into r_cbc_id from temp_country 
-                            where cbc_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
-							order by rand() limit 1;
+		while (r_episode_count<episode_count+1)
+			do
+				set r_episode_id=(select episode_id from episode where season_id=r_season_id and episode_number=r_episode_count);
+				set i=1;
+				-- select 10 countries, 10 participants and 10 recipes for the episode
+				while (i<11)
+					do	
+						-- select a country
+						select distinct cbc_id into r_cbc_id from temp_country 
+						where cbc_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
+						order by rand() limit 1;
                             
-                            -- select a cook participant
-							select cook_id into r_cook_id from temp_cooks 
-                            where cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
-							order by rand() limit 1;
+						-- select a cook participant
+						select cook_id into r_cook_id from temp_cooks 
+						where cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
+						order by rand() limit 1;
 
-                            -- select a recipe
-							select recipe_id into r_recipe_id from temp_recipe 
-                            where recipe_id not in (select recipe_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
-							order by rand() limit 1;
+						-- select a recipe
+						select recipe_id into r_recipe_id from temp_recipe 
+						where recipe_id not in (select recipe_id from episode_cook_participant where episode_id=r_episode_id) and usage_count<3
+						order by rand() limit 1;
 							
-                            -- insert the participant with his/her recipe
-							insert into episode_cook_participant(episode_id,cook_id,cbc_id,recipe_id) values (r_episode_id,r_cook_id,r_cbc_id,r_recipe_id);
+						-- insert the participant with his/her recipe
+						insert into episode_cook_participant(episode_id,cook_id,cbc_id,recipe_id) values (r_episode_id,r_cook_id,r_cbc_id,r_recipe_id);
 							
-							update temp_country set usage_count=usage_count+1 where cbc_id=r_cbc_id;
-                            update temp_cooks set usage_count=usage_count+1 where cook_id=r_cook_id;
-                            update temp_recipe set usage_count=usage_count+1 where recipe_id=r_recipe_id;
+						update temp_country set usage_count=usage_count+1 where cbc_id=r_cbc_id;
+						update temp_cooks set usage_count=usage_count+1 where cook_id=r_cook_id;
+						update temp_recipe set usage_count=usage_count+1 where recipe_id=r_recipe_id;
 							
-                            -- go to the next participant
-							set i=i+1;
-					end while;
+						-- go to the next participant
+						set i=i+1;
+				end while;
 					
-					set j=1;
-                    -- select 3 judges for the episode
-					while (j<4)
-						do
-							-- select a cook judge
-							select cook_id into r_judge_id from temp_cooks 
-							where cook_id in 
-							(select temp_cooks.cook_id from temp_cooks where
-							temp_cooks.cook_id not in (select cook_id from episode_cook_judge where episode_id=r_episode_id) 
-                            and temp_cooks.cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id))
-							and usage_count<3
-							order by rand() limit 1;
+				set j=1;
+				-- select 3 judges for the episode
+				while (j<4)
+					do
+						-- select a cook judge
+						select cook_id into r_judge_id from temp_cooks 
+						where cook_id in 
+						(select temp_cooks.cook_id from temp_cooks where
+						temp_cooks.cook_id not in (select cook_id from episode_cook_judge where episode_id=r_episode_id) 
+						and temp_cooks.cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id))
+						and usage_count<3
+						order by rand() limit 1;
 							
-							set k=1;
-                            -- set the score from each judge to each participant
-							while(k<11)
-								do
+						set k=1;
+						-- set the score from each judge to each participant
+						while(k<11)
+							do
+								-- pick a score
+								select FLOOR(RAND()*(5-1+1))+1 into r_judge_score;
+									
+								-- insert the jude with his/her score for the participant
+								insert into episode_cook_judge(episode_id,cook_id,ecp_id,judge_score) 
+								values (r_episode_id,r_judge_id,10*(r_episode_id-1)+k,r_judge_score);
+									
+								-- go to the next participant
+								set k=k+1;
+						end while;
+									
+						update temp_cooks set usage_count=usage_count+1 where cook_id=r_judge_id;        
 							
-									-- pick a score
-									select FLOOR(RAND()*(5-1+1))+1 into r_judge_score;
-									
-									-- insert the jude with his/her score for the participant
-									insert into episode_cook_judge(episode_id,cook_id,ecp_id,judge_score) 
-									values (r_episode_id,r_judge_id,10*(r_episode_id-1)+k,r_judge_score);
-									
-                                    -- go to the next participant
-									set k=k+1;
+						-- go to the next judge
+						set j=j+1;
+				end while;
+                    
+				if(r_episode_id>1)
+					then
+						set a=(select count(usage_count) from temp_country 
+								where cbc_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+								and cbc_id not in(select cbc_id from episode_cook_participant where episode_id=r_episode_id));
+						set b=(select count(usage_count) from temp_cooks 
+								where cook_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+								and cook_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id));
+						set c=(select count(usage_count) from temp_recipe 
+								where recipe_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+								and recipe_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id));
+						set aa=1;
+						set bb=1;
+						set cc=1;
+						-- check if a cuisine was used for the last episode but not this one
+						if(a>0)
+							then
+								while(aa<a+1)
+									do
+										update temp_country set usage_count=0 
+										where cbc_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
+										and cbc_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id);
+										set aa=aa+1;
 								end while;
-									
-							update temp_cooks set usage_count=usage_count+1 where cook_id=r_judge_id;        
-							
-                            -- go to the next judge
-							set j=j+1;
-					end while;
-                    
-                    select * from episode_cook_participant;
-                    
-                    if(r_episode_id>1)
-						then
-							set a=(select count(usage_count) from temp_country 
-								   where cbc_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
-                                   and cbc_id not in(select cbc_id from episode_cook_participant where episode_id=r_episode_id));
-							set b=(select count(usage_count) from temp_cooks 
-								   where cook_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
-                                   and cook_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id));
-							set c=(select count(usage_count) from temp_recipe 
-								   where recipe_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
-                                   and recipe_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id));
-							set aa=1;
-                            set bb=1;
-                            set cc=1;
-							-- check if a cuisine was used for the last episode but not this one
-							if(a>0)
-								then
-									while(aa<a+1)
-										do
-											update temp_country set usage_count=0 
-											where cbc_id in (select cbc_id from episode_cook_participant where episode_id=r_episode_id-1)
-                                            and cbc_id not in (select cbc_id from episode_cook_participant where episode_id=r_episode_id);
-                                            set aa=aa+1;
-									end while;
-							end if;
-							-- check if a cook was used for the last episode but not this one
-							if(b>0)
-								then
-									while(bb<b+1)
-										do
-											update temp_cooks set usage_count=0 
-											where cook_id in (select cook_id from episode_cook_participant where episode_id=r_episode_id-1)
-                                            and cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id);
-                                            set bb=bb+1;
-									end while;
-							end if;
-							-- check if a recipe was used for the last episode but not this one
-							if(c>0)
-								then
-									while(cc<c+1)
-										do
-											update temp_recipe set usage_count=0 
-											where recipe_id in (select recipe_id from episode_cook_participant where episode_id=r_episode_id-1)
-                                            and recipe_id not in (select recipe_id from episode_cook_participant where episode_id=r_episode_id);
-                                            set cc=cc+1;
-									end while;
-							end if;
+						end if;
+						-- check if a cook was used for the last episode but not this one
+						if(b>0)
+							then
+								while(bb<b+1)
+									do
+										update temp_cooks set usage_count=0 
+										where cook_id in (select cook_id from episode_cook_participant where episode_id=r_episode_id-1)
+										and cook_id not in (select cook_id from episode_cook_participant where episode_id=r_episode_id);
+										set bb=bb+1;
+								end while;
+						end if;
+						-- check if a recipe was used for the last episode but not this one
+						if(c>0)
+							then
+								while(cc<c+1)
+									do
+										update temp_recipe set usage_count=0 
+										where recipe_id in (select recipe_id from episode_cook_participant where episode_id=r_episode_id-1)
+										and recipe_id not in (select recipe_id from episode_cook_participant where episode_id=r_episode_id);
+										set cc=cc+1;
+								end while;
+						end if;
                             
-					end if;
+				end if;
                     
-                    -- go to the next episode
-					set r_episode_count=r_episode_count+1;
-			end while;
-            
-            -- go to the next season
-            set r_season_count=r_season_count+1;
-	end while;
+				-- go to the next episode
+				set r_episode_count=r_episode_count+1;
+		end while;
     
 end $$;
 
 delimiter ;
 
-call generate_episodes();
+call generate_episodes(1);
+call generate_episodes(2);
+call generate_episodes(3);
+call generate_episodes(4);
+call generate_episodes(5);
+call generate_episodes(6);

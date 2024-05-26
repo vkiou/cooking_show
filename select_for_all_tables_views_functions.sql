@@ -40,3 +40,11 @@ select recipe_type_from_basic_ingridient(35);
 select * from ingridient where ingri_id=172;
 select total_cooking_time(35);
 select * from time where time_id=25;
+
+
+call episode_winner(37,@out);
+select @out;
+select participant_total_score(ecp_id,episode_id),cook.cook_id,cook.cook_rank from episode_cook_participant join cook on episode_cook_participant.cook_id=cook.cook_id
+where episode_id=37 and cook.cook_id in(select cook_id from episode_cook_participant 
+where episode_id=37 
+and participant_total_score(ecp_id,episode_id)=(select max(participant_total_score(ecp_id,episode_id)) from episode_cook_participant where episode_id=37));

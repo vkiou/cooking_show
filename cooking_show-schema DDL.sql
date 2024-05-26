@@ -303,7 +303,7 @@ create index idx_fk_cook_id on episode_cook_judge(cook_id);
 create index idx_fk_episode_cook_participant_id on episode_cook_judge(ecp_id);
 
 
-/*Create functions*/
+/*Create functions and procedures*/
 
 delimiter $$
 create function `total_cooking_time`(recipe_id int) returns int
@@ -410,6 +410,51 @@ begin
     select sum(judge_score) into total_score from episode_cook_judge where episode_cook_judge.ecp_id=ecp_id and episode_cook_judge.episode_id=episode_id;
     
     return total_score;
+    
+end$$
+
+delimiter $$
+create procedure `episode_winner`(in episode_id int, out winner_id int)
+begin
+	
+    declare winning_score int;
+    declare winner_count int;
+    declare max_cook_rank int;
+    
+    drop table if exists cook_rank_int;
+    drop table if exists episode_cook_winner;
+    drop table if exists episode_cook_rank_int;
+    
+    set winning_score=(select max(participant_total_score(ecp_id,episode_id)) 
+    from episode_cook_participant where episode_cook_participant.episode_id=episode_id);
+
+    create temporary table episode_cook_rank_int as 
+    select ecp_id,episode_id,cook_id,participant_total_score(ecp_id,episode_id) as total_score
+    from episode_cook_participant 
+    where episode_cook_participant.episode_id=episode_id 
+    and participant_total_score(ecp_id,episode_id)=winning_score;
+    
+    set winner_count=(select count(cook_id) from episode_cook_rank_int);
+
+    create temporary table cook_rank_int as 
+		select ecp_id,episode_id,cook.cook_id,total_score,
+        if(cook_rank='third cook',1,if(cook_rank='second cook',2,if(cook_rank='first cook',3,if(cook_rank='assistant chef',4,5))))as rank_int 
+        from episode_cook_rank_int join cook on episode_cook_rank_int.cook_id=cook.cook_id;
+    
+    if(winner_count>1)
+		then
+			if((select count(cook_id) from cook_rank_int where rank_int=max_cook_rank)>1)
+				then
+					select cook_id into winner_id from cook_rank_int where rank_int=max_cook_rank
+					order by rand() limit 1;
+			else
+				set max_cook_rank=(select max(rank_int) from cook_rank_int);
+				select cook_id into winner_id from cook_rank_int where rank_int=max_cook_rank;
+			end if;
+            
+		else 
+            select cook_id into winner_id from cook_rank_int;
+	end if;
     
 end$$
 
